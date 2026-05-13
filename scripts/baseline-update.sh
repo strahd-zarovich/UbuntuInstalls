@@ -11,9 +11,15 @@ echo " Baseline Server Setup"
 echo "======================================"
 
 echo "Disabling cloud-init..."
-sudo touch /etc/cloud/cloud-init.disabled
+
+if [ -d /etc/cloud ]; then
+    sudo touch /etc/cloud/cloud-init.disabled
+else
+    echo "/etc/cloud does not exist. Skipping cloud-init disable file."
+fi
+
 sudo apt-get purge cloud-init -y || true
-sudo rm -rf /etc/cloud/ /var/lib/cloud/
+sudo rm -rf /etc/cloud/ /var/lib/cloud/ || true
 
 echo "Installing qemu-guest-agent..."
 sudo apt update
