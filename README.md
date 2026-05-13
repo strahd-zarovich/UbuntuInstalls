@@ -47,6 +47,17 @@ chmod +x scripts/*.sh
 ./setup.sh
 ```
 
+The setup menu automatically reloads after each completed action.
+
+Available menu options include:
+
+* Baseline server setup
+* Basic tool installation
+* Docker installation
+* Glances installation
+* Running update.sh
+* Server reboot
+
 ---
 
 # Daily Usage
@@ -83,7 +94,7 @@ At completion, the script prompts for an optional reboot instead of automaticall
 
 Performs the standard baseline configuration used on most new Ubuntu servers.
 
-Disables cloud-init, installs qemu-guest-agent, and configures the server timezone.
+Disables cloud-init, installs qemu-guest-agent, configures the server timezone, and copies `update.sh` to the current user’s home directory for easy access after SSH login.
 
 ---
 
@@ -118,7 +129,7 @@ Also configures the current user for Docker group access.
 
 Installs Glances inside a Python virtual environment and configures it as a systemd web service.
 
-Provides browser-based server monitoring on port 61208.
+Includes additional monitoring support for Docker, sensors, GPU visibility, and web monitoring access on port 61208.
 
 ---
 
@@ -128,6 +139,7 @@ Provides browser-based server monitoring on port 61208.
 * Some actions may require logout/login before permissions apply.
 * Review scripts before running them on production systems.
 * Pi-hole updates inside `update.sh` are disabled by default and can be enabled manually if needed.
+* `update.sh` is automatically copied to the logged-in user’s home directory during baseline setup.
 
 ---
 
