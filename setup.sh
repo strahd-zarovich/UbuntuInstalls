@@ -15,6 +15,7 @@ while true; do
     echo "3) Install Docker"
     echo "4) Install Glances"
     echo "5) Run update.sh"
+    echo "8) Update UbuntuInstalls from GitHub"
     echo "9) Reboot server"
     echo "0) Exit"
     echo
@@ -27,6 +28,13 @@ while true; do
         3) bash "$SCRIPT_DIR/scripts/install-docker.sh" ;;
         4) bash "$SCRIPT_DIR/scripts/install-glances.sh" ;;
         5) bash "$SCRIPT_DIR/update.sh" ;;
+        8)
+            echo "Updating UbuntuInstalls from GitHub..."
+            cd "$SCRIPT_DIR"
+            git pull
+            chmod +x setup.sh update.sh scripts/*.sh
+            echo "UbuntuInstalls updated."
+            ;;
         9)
             echo "Rebooting server..."
             sudo reboot
