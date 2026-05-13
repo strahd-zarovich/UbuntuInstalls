@@ -24,14 +24,15 @@ sudo rm -rf /etc/cloud/ /var/lib/cloud/ || true
 echo "Installing qemu-guest-agent..."
 sudo apt update
 sudo apt install -y qemu-guest-agent
-sudo systemctl enable --now qemu-guest-agent
+sudo systemctl restart qemu-guest-agent
 
 echo "Setting timezone..."
 sudo timedatectl set-timezone America/New_York
 
 echo "Copying update.sh to $USER_HOME..."
-cp "$REPO_DIR/update.sh" "$USER_HOME/update.sh"
-chmod +x "$USER_HOME/update.sh"
+sudo cp "$REPO_DIR/update.sh" "$USER_HOME/update.sh"
+sudo chown "$CURRENT_USER:$CURRENT_USER" "$USER_HOME/update.sh"
+sudo chmod +x "$USER_HOME/update.sh"
 
 echo
 echo "Baseline complete."
