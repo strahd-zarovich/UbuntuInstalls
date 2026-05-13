@@ -20,7 +20,7 @@ case "$choice" in
   2) bash "$SCRIPT_DIR/scripts/install-basic-tools.sh" ;;
   3) bash "$SCRIPT_DIR/scripts/install-docker.sh" ;;
   4) bash "$SCRIPT_DIR/scripts/install-glances.sh" ;;
-  5) bash "$SCRIPT_DIR/scripts/update-server.sh" ;;
+  5) bash "$SCRIPT_DIR/update.sh" ;;
   0) exit 0 ;;
   *) echo "Invalid option"; exit 1 ;;
 esac
