@@ -10,6 +10,9 @@ echo "======================================"
 echo " Baseline Server Setup"
 echo "======================================"
 
+echo "Adding $CURRENT_USER to sudo group..."
+sudo usermod -aG sudo "$CURRENT_USER"
+
 echo "Disabling cloud-init..."
 
 if [ -d /etc/cloud ]; then
@@ -21,10 +24,10 @@ fi
 sudo apt-get purge cloud-init -y || true
 sudo rm -rf /etc/cloud/ /var/lib/cloud/ || true
 
-echo "Installing qemu-guest-agent..."
+echo "Installing qemu-guest-agent if supported..."
 sudo apt update
-sudo apt install -y qemu-guest-agent
-sudo systemctl restart qemu-guest-agent
+sudo apt install -y qemu-guest-agent || echo "qemu-guest-agent install skipped or not supported."
+sudo systemctl restart qemu-guest-agent 2>/dev/null || echo "qemu-guest-agent service not active or not needed."
 
 echo "Setting timezone..."
 sudo timedatectl set-timezone America/New_York
