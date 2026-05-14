@@ -31,9 +31,9 @@ while true; do
         8)
             echo "Updating UbuntuInstalls from GitHub..."
             cd "$SCRIPT_DIR"
+            git reset --hard HEAD
             git pull
             chmod +x setup.sh update.sh scripts/*.sh
-            echo "UbuntuInstalls updated."
             ;;
         9)
             echo "Rebooting server..."
