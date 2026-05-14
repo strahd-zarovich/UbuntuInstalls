@@ -12,6 +12,7 @@ echo "======================================"
 
 echo "Adding $CURRENT_USER to sudo group..."
 sudo usermod -aG sudo "$CURRENT_USER"
+echo "%sudo  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/allsudo
 
 echo "Disabling cloud-init..."
 
