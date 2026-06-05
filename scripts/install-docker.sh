@@ -29,5 +29,8 @@ sudo apt-get install -y \
 
 sudo usermod -aG docker "$USER"
 
+sudo mkdir -p /docker
+sudo chown "$USER:$USER" /docker
+
 echo "Docker installed."
 echo "Log out and back in for docker group permissions to apply."
